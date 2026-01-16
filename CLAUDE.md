@@ -2,6 +2,17 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Standards
+
+This is a public portfolio repository. All code, commits, and documentation serve as professional work samples and must reflect that:
+
+- **Code quality**: Modern patterns, strict TypeScript, accessibility, performance
+- **Git hygiene**: Atomic commits with clear conventional commit messages; no WIP or fixup commits on main
+- **Architecture**: Intentional structure that scales; no quick hacks or temporary solutions
+- **Testing**: Meaningful coverage that validates behavior, not just lines
+
+Write code that could be discussed in a technical interview.
+
 ## Commands
 
 ```bash
@@ -66,6 +77,14 @@ Dark mode is class-based via `next-themes` with `ThemeProvider` wrapping the app
 - Prefix unused variables with underscore: `_unusedVar`
 - Components needing client-side features must have `'use client'` directive
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org/) (enforced by commitlint)
+
+### File Length
+
+- **Components**: ~150 lines max. Extract subcomponents or hooks when exceeding this.
+- **Utilities/hooks**: ~100 lines max. Split into focused modules.
+- **Test files**: No strict limit, but group related tests and consider splitting by feature.
+
+These are guidelines, not rules. A 200-line component with clear structure is better than three tangled 60-line files.
 
 ## Pre-commit Hooks
 
