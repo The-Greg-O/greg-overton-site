@@ -1,0 +1,65 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dev",
+      "type": "shell",
+      "command": "pnpm dev",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "next",
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+): (error|warning) (.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\s*▲ Next\\.js",
+          "endsPattern": "^\\s*✓ Ready"
+        }
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "pnpm build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "lint",
+      "type": "shell",
+      "command": "pnpm lint",
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "typecheck",
+      "type": "shell",
+      "command": "pnpm typecheck",
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "pnpm test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "test:e2e",
+      "type": "shell",
+      "command": "pnpm test:e2e",
+      "group": "test"
+    }
+  ]
+}
