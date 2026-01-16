@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Setup GitHub repository settings including branch protection
+# Requires: GitHub CLI (gh) authenticated with appropriate permissions
+#
+# Usage: ./scripts/setup-github.sh
+
+set -e
+
+REPO="goverton/greg-overton-site"
+BRANCH="main"
+
+echo "Setting up GitHub repository: $REPO"
+
+# Check if gh is installed
+if ! command -v gh &> /dev/null; then
+    echo "Error: GitHub CLI (gh) is not installed."
+    echo "Install it from: https://cli.github.com/"
+    exit 1
+fi
+
+# Check if authenticated
+if ! gh auth status &> /dev/null; then
+    echo "Error: Not authenticated with GitHub CLI."
+    echo "Run: gh auth login"
+    exit 1
+fi
+
+echo ""
+echo "Configuring branch protection for '$BRANCH'..."
+
+# Enable branch protection
+gh api \
+  --method PUT \
+  -H "Accept: application/vnd.github+json" \
+  "/repos/$REPO/branches/$BRANCH/protection" \
+  -f "required_status_checks[strict]=true" \
+  -f "required_status_checks[contexts][]=quality" \
+  -f "required_status_checks[contexts][]=e2e" \
+  -f "enforce_admins=false" \
+  -f "required_pull_request_reviews[dismiss_stale_reviews]=true" \
+  -f "required_pull_request_reviews[require_code_owner_reviews]=true" \
+  -f "required_pull_request_reviews[required_approving_review_count]=1" \
+  -f "restrictions=null" \
+  -f "required_linear_history=true" \
+  -f "allow_force_pushes=false" \
+  -f "allow_deletions=false"
+
+echo ""
+echo "Branch protection configured successfully!"
+echo ""
+echo "Settings applied:"
+echo "  - Require pull request before merging"
+echo "  - Require 1 approval"
+echo "  - Require code owner review"
+echo "  - Dismiss stale reviews on new commits"
+echo "  - Require status checks to pass (quality, e2e)"
+echo "  - Require branches to be up to date"
+echo "  - Require linear history (no merge commits)"
+echo "  - Block force pushes"
+echo "  - Block branch deletion"
+echo ""
+echo "Done! Your repository is now configured."
