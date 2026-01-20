@@ -7,7 +7,7 @@
 
 set -e
 
-REPO="goverton/greg-overton-site"
+REPO="The-Greg-O/greg-overton-site"
 BRANCH="main"
 
 echo "Setting up GitHub repository: $REPO"
@@ -29,22 +29,29 @@ fi
 echo ""
 echo "Configuring branch protection for '$BRANCH'..."
 
-# Enable branch protection
+# Enable branch protection using JSON input for proper typing
 gh api \
   --method PUT \
   -H "Accept: application/vnd.github+json" \
   "/repos/$REPO/branches/$BRANCH/protection" \
-  -f "required_status_checks[strict]=true" \
-  -f "required_status_checks[contexts][]=quality" \
-  -f "required_status_checks[contexts][]=e2e" \
-  -f "enforce_admins=false" \
-  -f "required_pull_request_reviews[dismiss_stale_reviews]=true" \
-  -f "required_pull_request_reviews[require_code_owner_reviews]=true" \
-  -f "required_pull_request_reviews[required_approving_review_count]=1" \
-  -f "restrictions=null" \
-  -f "required_linear_history=true" \
-  -f "allow_force_pushes=false" \
-  -f "allow_deletions=false"
+  --input - <<EOF
+{
+  "required_status_checks": {
+    "strict": true,
+    "contexts": ["Code Quality", "E2E Tests"]
+  },
+  "enforce_admins": false,
+  "required_pull_request_reviews": {
+    "dismiss_stale_reviews": true,
+    "require_code_owner_reviews": true,
+    "required_approving_review_count": 1
+  },
+  "restrictions": null,
+  "required_linear_history": true,
+  "allow_force_pushes": false,
+  "allow_deletions": false
+}
+EOF
 
 echo ""
 echo "Branch protection configured successfully!"
@@ -54,7 +61,7 @@ echo "  - Require pull request before merging"
 echo "  - Require 1 approval"
 echo "  - Require code owner review"
 echo "  - Dismiss stale reviews on new commits"
-echo "  - Require status checks to pass (quality, e2e)"
+echo "  - Require status checks to pass (Code Quality, E2E Tests)"
 echo "  - Require branches to be up to date"
 echo "  - Require linear history (no merge commits)"
 echo "  - Block force pushes"
