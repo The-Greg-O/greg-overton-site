@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { geistMono, geistSans } from '@/lib/fonts'
+import { orbitron, oxanium, jetbrainsMono } from '@/lib/fonts'
 import { siteConfig } from '@/lib/constants'
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+    { media: '(prefers-color-scheme: light)', color: '#f5f7fa' },
+    { media: '(prefers-color-scheme: dark)', color: '#0d1117' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -48,14 +48,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
+      <body
+        className={`${orbitron.variable} ${oxanium.variable} ${jetbrainsMono.variable} font-sans`}
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {/* Blueprint grid background */}
+          <div className="blueprint-bg pointer-events-none fixed inset-0" />
+
+          {/* Noise texture overlay */}
+          <div className="noise-overlay" />
+
+          {/* Main content */}
+          <div className="relative z-10">{children}</div>
         </ThemeProvider>
       </body>
     </html>
