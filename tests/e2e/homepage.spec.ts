@@ -14,10 +14,20 @@ test.describe('Homepage', () => {
     await expect(heading).toBeVisible()
   })
 
-  test('has GitHub link', async ({ page }) => {
-    const githubLink = page.getByRole('link', { name: 'GitHub' })
+  test('has GitHub link in hero', async ({ page }) => {
+    // The hero button contains "GitHub" text (and optionally "View" on larger screens)
+    const githubLink = page
+      .locator('section')
+      .first()
+      .getByRole('link', { name: /GitHub/i })
     await expect(githubLink).toBeVisible()
-    await expect(githubLink).toHaveAttribute('href', 'https://github.com/goverton')
+    await expect(githubLink).toHaveAttribute('href', 'https://github.com/The-Greg-O')
+  })
+
+  test('has GitHub link in footer', async ({ page }) => {
+    const footerGithubLink = page.locator('footer').getByRole('link', { name: 'GitHub' })
+    await expect(footerGithubLink).toBeVisible()
+    await expect(footerGithubLink).toHaveAttribute('href', 'https://github.com/The-Greg-O')
   })
 
   test('has theme toggle button', async ({ page }) => {
