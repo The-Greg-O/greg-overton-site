@@ -44,3 +44,6 @@ next-env.d.ts
 # Misc
 *.pem
 .env*.local
+
+# Superpowers brainstorming artifacts
+.superpowers/

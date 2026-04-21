@@ -10,29 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-geist-sans)'],
-        mono: ['var(--font-geist-mono)'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        border: 'hsl(var(--border))',
+        background: 'hsl(var(--bg-0))',
+        foreground: 'hsl(var(--fg))',
+        'fg-dim': 'hsl(var(--fg-dim))',
+        'fg-mute': 'hsl(var(--fg-mute))',
+        'fg-ghost': 'hsl(var(--fg-ghost))',
+        teal: 'hsl(var(--teal))',
+        'teal-soft': 'hsl(var(--teal-soft))',
+        violet: 'hsl(var(--violet))',
       },
       borderRadius: {
         lg: 'var(--radius)',

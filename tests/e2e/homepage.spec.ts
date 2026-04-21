@@ -14,30 +14,27 @@ test.describe('Homepage', () => {
     await expect(heading).toBeVisible()
   })
 
-  test('has GitHub link', async ({ page }) => {
+  test('has GitHub link in hero', async ({ page }) => {
     const githubLink = page.getByRole('link', { name: 'GitHub' }).first()
     await expect(githubLink).toBeVisible()
     await expect(githubLink).toHaveAttribute('href', 'https://github.com/The-Greg-O')
   })
 
-  test('has theme toggle button', async ({ page }) => {
-    const themeToggle = page.getByRole('button', { name: /toggle theme|switch to/i })
-    await expect(themeToggle).toBeVisible()
+  test('renders section landmarks', async ({ page }) => {
+    await expect(page.locator('#profile')).toBeVisible()
+    await expect(page.locator('#now')).toBeVisible()
+    await expect(page.locator('#path')).toBeVisible()
+    await expect(page.locator('#work')).toBeVisible()
+    await expect(page.locator('#signal')).toBeVisible()
   })
 
-  test('theme toggle switches between light and dark', async ({ page }) => {
-    const html = page.locator('html')
-    const themeToggle = page.getByRole('button', { name: /toggle theme|switch to/i })
-
-    // Initial state depends on system preference, so we toggle twice to verify functionality
-    await themeToggle.click()
-    const firstState = await html.getAttribute('class')
-
-    await themeToggle.click()
-    const secondState = await html.getAttribute('class')
-
-    // States should be different after toggling
-    expect(firstState).not.toBe(secondState)
+  test('contact section exposes LinkedIn and GitHub', async ({ page }) => {
+    const signal = page.locator('#signal')
+    await expect(signal).toBeVisible()
+    const contactLinks = page.locator('#signal ~ * a, #signal ~ *').first()
+    await expect(contactLinks).toBeVisible()
+    await expect(page.getByRole('link', { name: 'LinkedIn' }).first()).toBeVisible()
+    await expect(page.getByRole('link', { name: 'GitHub' }).first()).toBeVisible()
   })
 })
 
