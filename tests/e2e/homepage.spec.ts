@@ -15,9 +15,9 @@ test.describe('Homepage', () => {
   })
 
   test('has GitHub link', async ({ page }) => {
-    const githubLink = page.getByRole('link', { name: 'GitHub' })
+    const githubLink = page.getByRole('link', { name: 'GitHub' }).first()
     await expect(githubLink).toBeVisible()
-    await expect(githubLink).toHaveAttribute('href', 'https://github.com/goverton')
+    await expect(githubLink).toHaveAttribute('href', 'https://github.com/The-Greg-O')
   })
 
   test('has theme toggle button', async ({ page }) => {
