@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
 
 const isCI = !!process.env['CI']
+const port = process.env['PORT'] ?? '3000'
+const baseURL = process.env['PLAYWRIGHT_BASE_URL'] ?? `http://localhost:${port}`
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -10,7 +12,7 @@ export default defineConfig({
   workers: isCI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL,
     trace: 'on-first-retry',
   },
   projects: [
@@ -36,8 +38,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm build && pnpm start',
-    url: 'http://localhost:3000',
+    command: `pnpm build && PORT=${port} pnpm start`,
+    url: baseURL,
     reuseExistingServer: !isCI,
+    timeout: 180_000,
   },
 })

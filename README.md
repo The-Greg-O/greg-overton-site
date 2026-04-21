@@ -21,7 +21,7 @@ Personal portfolio and project showcase.
 
 ```bash
 # Clone the repository
-git clone https://github.com/goverton/greg-overton-site.git
+git clone https://github.com/The-Greg-O/greg-overton-site.git
 cd greg-overton-site
 
 # Install dependencies
