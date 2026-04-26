@@ -5,6 +5,8 @@ export const siteConfig = {
   description:
     'Personal site of Greg Overton — engineering leader building real systems and integrations across IoT, sailing, rocketry, and agentic AI.',
   url: process.env['NEXT_PUBLIC_SITE_URL'] ?? 'https://gregoverton.com',
+  lastUpdated: '2026-04-26',
+  lastUpdatedLabel: 'Apr 2026',
   author: {
     name: 'Greg Overton',
     location: 'Seattle, WA',

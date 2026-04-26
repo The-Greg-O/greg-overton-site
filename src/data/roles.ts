@@ -15,11 +15,14 @@ export const currentRole: Role = {
   companyUrl: 'https://butlr.com',
   period: 'Jan 2026 — present',
   summary:
-    'I own the research engineering function at Butlr — edge algorithms and firmware, cloud pipelines, ML, dashboards, developer tooling. Most of my time is spent at the seams between layers.',
+    'I lead the development of new technical capabilities within Butlr’s autonomous sensing platform, owning the path from concept through production across edge systems, data infrastructure, and AI-native operations.',
   highlights: [
-    'Technical direction across the full stack — firmware and edge, ingest and ML, dashboards and dev tooling. Setting the bar for how we ship: conventions, reliability patterns, CI.',
-    'AI-native infrastructure — agentic tools, our public open-source MCP server, and persistent agents that diagnose the production fleet over Slack.',
-    'Platform reliability — architected the edge-to-cloud ingest rearchitecture (MQTT-centric, durable buffering, per-tenant routing) and led the Rust port of our core detection algorithms.',
+    'Lead the development of new technical capabilities at Butlr, carrying work from concept through production across edge systems, data infrastructure, and machine learning.',
+    'Design and integrate cross-domain systems, partnering with firmware, platform, ML, Product, and customer-facing teams to move prototypes into maintainable production paths.',
+    'Architect capability infrastructure, including the edge-to-cloud ingest rearchitecture (MQTT-based, durable buffering, per-tenant routing) to improve reliability at fleet scale.',
+    "Build AI-native operational systems, including agentic tooling, persistent Slack-based diagnostic agents, and Butlr's open-source MCP server.",
+    'Lead the development and productionization of sensing and detection systems, including the Rust-based reimplementation of core algorithms for performance and reliability.',
+    'Translate emerging technical capabilities into real-world product value, making sure new systems are intuitive to operate, scalable to maintain, and aligned with customer needs.',
   ],
   current: true,
 }

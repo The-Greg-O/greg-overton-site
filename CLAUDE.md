@@ -1,28 +1,28 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with this repository.
 
 ## Standards
 
-This is a public portfolio repository. All code, commits, and documentation serve as professional work samples and must reflect that:
+This is a public portfolio repository. Code, commits, assets, and documentation are professional
+work samples and should be treated that way:
 
-- **Code quality**: Modern patterns, strict TypeScript, accessibility, performance
-- **Git hygiene**: Atomic commits with clear conventional commit messages; no WIP or fixup commits on main
-- **Architecture**: Intentional structure that scales; no quick hacks or temporary solutions
-- **Testing**: Meaningful coverage that validates behavior, not just lines
-
-Write code that could be discussed in a technical interview.
+- **Code quality**: Modern React, strict TypeScript, accessibility, performance
+- **Git hygiene**: Atomic commits with clear conventional commit messages
+- **Architecture**: Small, intentional modules that match the existing structure
+- **Testing**: Behavior-focused coverage for utilities, metadata, and page-level smoke paths
+- **Privacy**: Strip EXIF metadata from public image assets before committing
 
 ## Commands
 
 ```bash
 # Development
-pnpm dev                    # Start dev server with Turbopack (localhost:3000)
+pnpm dev                    # Start dev server with Turbopack
 pnpm build                  # Production build
 pnpm start                  # Start production server
 
-# Code Quality
-pnpm lint                   # ESLint (strict, zero warnings allowed)
+# Code quality
+pnpm lint                   # ESLint, zero warnings allowed
 pnpm lint:fix               # ESLint with auto-fix
 pnpm format                 # Prettier format all files
 pnpm format:check           # Check formatting
@@ -30,67 +30,60 @@ pnpm typecheck              # TypeScript type check
 
 # Testing
 pnpm test                   # Run Vitest in watch mode
-pnpm test --run             # Run Vitest once (CI mode)
-pnpm test:coverage          # Run with coverage report
-pnpm test:e2e               # Run Playwright E2E tests (builds first)
-pnpm test:e2e:ui            # Playwright with UI mode
-
-# Run a single test file
-pnpm test tests/unit/utils.test.ts
-pnpm test:e2e tests/e2e/homepage.spec.ts
+pnpm test --run             # Run Vitest once
+pnpm test:coverage          # Run Vitest coverage
+pnpm test:e2e               # Run Playwright E2E tests
+pnpm test:e2e:ui            # Playwright UI mode
 ```
 
 ## Architecture
 
-This is a Next.js 15 App Router personal portfolio site using TypeScript (strict mode), Tailwind CSS, and next-themes for dark mode.
+This is a Next.js 16 App Router portfolio site using React 19, TypeScript strict mode, Tailwind CSS,
+and static content modules.
 
 ### Path Alias
 
-`@/*` maps to `./src/*` - use this for all imports from src.
+`@/*` maps to `./src/*`. Use it for imports from `src`.
 
 ### Source Structure
 
-- `src/app/` - Next.js App Router pages and layouts
-- `src/components/` - React components
-  - `src/components/ui/` - Primitive UI components (Button, etc.)
-- `src/lib/` - Utilities and configuration
-  - `utils.ts` - `cn()` helper combining clsx + tailwind-merge
-  - `constants.ts` - Site configuration (`siteConfig`)
-  - `fonts.ts` - Geist font setup
-- `src/types/` - Shared TypeScript type definitions
-
-### Testing Structure
-
-- `tests/unit/` - Vitest unit tests (jsdom environment, uses `@testing-library/react`)
-- `tests/e2e/` - Playwright E2E tests (runs against localhost:3000)
-- `tests/setup.ts` - Vitest setup importing jest-dom matchers
+- `src/app/` - App Router entrypoints, metadata routes, icons, and 404 page
+- `src/components/` - Presentation components and page sections
+- `src/data/` - Role and project content models
+- `src/lib/` - Site constants, font setup, and shared utilities
+- `tests/unit/` - Vitest tests
+- `tests/e2e/` - Playwright smoke tests
 
 ### Styling
 
-Uses Tailwind with CSS custom properties for theming. Colors like `background`, `foreground`, `primary`, `secondary`, `muted`, `accent`, and `border` are defined as HSL variables in `globals.css` and referenced in `tailwind.config.ts`.
+Tailwind handles layout and most component styling. `src/app/globals.css` owns base styles, design
+tokens, and a small set of reusable visual utilities such as `surface-glass`, `chip`, and image
+plate treatments.
 
-Dark mode is class-based via `next-themes` with `ThemeProvider` wrapping the app.
+The site is dark by design via the root `dark` class and `color-scheme`; there is no runtime theme
+provider.
+
+### Metadata
+
+- `src/lib/constants.ts` is the source of truth for canonical URL, author metadata, and update date.
+- `src/app/layout.tsx` owns page metadata.
+- `src/app/sitemap.ts` publishes the sitemap consumed by `public/robots.txt`.
+- `src/app/opengraph-image.tsx`, `icon.tsx`, and `apple-icon.tsx` generate dynamic image assets.
 
 ## Code Conventions
 
-- Use `type` imports: `import { type Foo } from 'bar'` (enforced by ESLint)
-- Prefix unused variables with underscore: `_unusedVar`
-- Components needing client-side features must have `'use client'` directive
-- Commits follow [Conventional Commits](https://www.conventionalcommits.org/) (enforced by commitlint)
+- Use type imports where required by ESLint.
+- Prefix intentionally unused variables with `_`.
+- Add `'use client'` only for components that need client-side behavior.
+- Keep content changes in `src/data` when possible.
+- Avoid dead scaffold files; if a type or helper has no consumer, remove it.
+- Commits follow Conventional Commits and are checked by commitlint.
 
-### File Length
-
-- **Components**: ~150 lines max. Extract subcomponents or hooks when exceeding this.
-- **Utilities/hooks**: ~100 lines max. Split into focused modules.
-- **Test files**: No strict limit, but group related tests and consider splitting by feature.
-
-These are guidelines, not rules. A 200-line component with clear structure is better than three tangled 60-line files.
-
-## Pre-commit Hooks
+## Hooks
 
 Husky runs lint-staged on commit:
 
 - TypeScript files: ESLint fix + Prettier
-- JSON/MD/YAML files: Prettier
+- JSON, Markdown, and YAML files: Prettier
 
-Commit messages are validated against conventional commit format.
+Commit messages are validated with commitlint.

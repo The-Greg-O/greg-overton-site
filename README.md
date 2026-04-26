@@ -1,12 +1,18 @@
 # gregoverton.com
 
-Personal portfolio and project showcase.
+[![CI](https://github.com/The-Greg-O/greg-overton-site/actions/workflows/ci.yml/badge.svg)](https://github.com/The-Greg-O/greg-overton-site/actions/workflows/ci.yml)
+
+Personal portfolio and project showcase for [gregoverton.com](https://gregoverton.com).
+
+This repository is intentionally public: the site is both a portfolio and a small engineering work
+sample. It emphasizes clean content modeling, strict TypeScript, accessible static rendering,
+production metadata, and repeatable quality gates.
 
 ## Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/) (strict mode)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
+- **Language**: [TypeScript](https://www.typescriptlang.org/) in strict mode
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) plus scoped global CSS utilities
 - **Testing**: [Vitest](https://vitest.dev/) + [Playwright](https://playwright.dev/)
 - **Deployment**: [Vercel](https://vercel.com/)
 
@@ -20,14 +26,9 @@ Personal portfolio and project showcase.
 ### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/The-Greg-O/greg-overton-site.git
 cd greg-overton-site
-
-# Install dependencies
 pnpm install
-
-# Start development server
 pnpm dev
 ```
 
@@ -35,72 +36,69 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Scripts
 
-| Command          | Description                             |
-| ---------------- | --------------------------------------- |
-| `pnpm dev`       | Start development server with Turbopack |
-| `pnpm build`     | Build for production                    |
-| `pnpm start`     | Start production server                 |
-| `pnpm lint`      | Run ESLint                              |
-| `pnpm format`    | Format code with Prettier               |
-| `pnpm typecheck` | Run TypeScript type checking            |
-| `pnpm test`      | Run unit tests                          |
-| `pnpm test:e2e`  | Run end-to-end tests                    |
+| Command             | Description                                      |
+| ------------------- | ------------------------------------------------ |
+| `pnpm dev`          | Start the development server with Turbopack      |
+| `pnpm build`        | Build the production app                         |
+| `pnpm start`        | Start the production server                      |
+| `pnpm lint`         | Run ESLint with zero warnings allowed            |
+| `pnpm format`       | Format files with Prettier                       |
+| `pnpm format:check` | Check Prettier formatting                        |
+| `pnpm typecheck`    | Run TypeScript without emitting output           |
+| `pnpm test`         | Run Vitest unit tests                            |
+| `pnpm test:e2e`     | Run Playwright tests against a production server |
 
 ## Project Structure
 
-```
+```text
 src/
-├── app/           # Next.js App Router pages
-├── components/    # React components
-│   └── ui/        # Primitive UI components
-├── lib/           # Utilities and helpers
-└── types/         # TypeScript type definitions
+├── app/             # Next.js App Router pages, metadata, icons, and sitemap
+├── components/      # Presentation components and page sections
+├── data/            # Portfolio content models for roles and projects
+└── lib/             # Site constants, fonts, and utility helpers
 
 tests/
-├── unit/          # Vitest unit tests
-└── e2e/           # Playwright E2E tests
+├── unit/            # Vitest coverage for utilities and metadata routes
+└── e2e/             # Playwright smoke tests across desktop and mobile browsers
 ```
 
 ## Code Quality
 
-This project enforces code quality through:
+This project enforces:
 
-- **TypeScript** strict mode with additional checks
-- **ESLint** with accessibility rules
-- **Prettier** for consistent formatting
-- **Husky** pre-commit hooks
-- **Commitlint** for conventional commits
-- **GitHub Actions** CI pipeline
+- Strict TypeScript with additional safety checks
+- ESLint, including accessibility rules
+- Prettier with Tailwind class sorting
+- Vitest unit tests
+- Playwright browser smoke tests
+- GitHub Actions CI for typecheck, lint, formatting, tests, and production build
+- Husky + lint-staged + commitlint for local commit hygiene
+
+Published image assets are stripped of EXIF metadata before being committed.
 
 ## Repository Setup
 
-### Branch Protection (Required)
+### Branch Protection
 
 After pushing to GitHub, configure branch protection:
 
 ```bash
-# Using the included script (requires GitHub CLI)
 ./scripts/setup-github.sh
 ```
 
-Or manually in GitHub Settings → Branches → Add rule for `main`:
-
-- [x] Require pull request before merging
-- [x] Require 1 approval
-- [x] Require review from code owners
-- [x] Dismiss stale reviews on new commits
-- [x] Require status checks: `quality`, `e2e`
-- [x] Require branches to be up to date
-- [x] Require linear history
-- [x] Block force pushes
+The script requires the GitHub CLI and applies protection for `main`, including pull requests,
+code-owner review, linear history, blocked force pushes, and required `Code Quality` and `E2E Tests`
+checks.
 
 ### Environment Variables
 
-Copy `.env.example` to `.env.local` and configure:
+All environment variables are optional. Copy the template only if you need to override defaults:
 
 ```bash
 cp .env.example .env.local
 ```
+
+`NEXT_PUBLIC_SITE_URL` controls the canonical URL used in metadata and sitemap generation.
 
 ## License
 
