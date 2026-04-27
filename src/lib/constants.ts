@@ -7,7 +7,7 @@ if (Number.isNaN(lastUpdatedDate.getTime())) {
 export const siteConfig = {
   name: 'Greg Overton',
   tagline:
-    'I build real systems and real integrations that solve real problems — cutting-edge where it helps, practical first, with a heart for the human side.',
+    'I bring complex systems together and turn them into products that actually work in the real world, for the business and the people who use them.',
   description:
     'Personal site of Greg Overton — engineering leader building real systems and integrations across IoT, sailing, rocketry, and agentic AI.',
   url: process.env['NEXT_PUBLIC_SITE_URL'] ?? 'https://gregoverton.com',
