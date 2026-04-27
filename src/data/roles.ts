@@ -15,14 +15,15 @@ export const currentRole: Role = {
   companyUrl: 'https://butlr.com',
   period: 'Jan 2026 — present',
   summary:
-    'I lead the development of new technical capabilities within Butlr’s autonomous sensing platform, owning the path from concept through production across edge systems, data infrastructure, and AI-native operations.',
+    'I lead Butlr’s research engineering function, owning the path from concept through production for new technical capabilities across edge systems, data infrastructure, ML, and AI-native operations.',
   highlights: [
-    'Lead the development of new technical capabilities at Butlr, carrying work from concept through production across edge systems, data infrastructure, and machine learning.',
-    'Design and integrate cross-domain systems, partnering with firmware, platform, ML, Product, and customer-facing teams to move prototypes into maintainable production paths.',
-    'Architect capability infrastructure, including the edge-to-cloud ingest rearchitecture (MQTT-based, durable buffering, per-tenant routing) to improve reliability at fleet scale.',
-    "Build AI-native operational systems, including agentic tooling, persistent Slack-based diagnostic agents, and Butlr's open-source MCP server.",
+    'Pioneer the adoption of emerging technologies (AI, infrastructure, developer tooling), rapidly prototyping and evaluating new approaches for technical and commercial viability.',
+    'Design and unify cross-domain systems, integrating firmware, ingest, ML, and user-facing platforms into cohesive, scalable architectures.',
+    'Architect core platform infrastructure, including the edge-to-cloud ingest rearchitecture (MQTT-based, durable buffering, per-tenant routing) to support reliability at fleet scale.',
+    'Build AI-native operational systems, including agentic tooling, persistent Slack-based diagnostic agents, and Butlr’s open-source MCP server.',
     'Lead the development and productionization of sensing and detection systems, including the Rust-based reimplementation of core algorithms for performance and reliability.',
-    'Translate emerging technical capabilities into real-world product value, making sure new systems are intuitive to operate, scalable to maintain, and aligned with customer needs.',
+    'Translate exploratory research into production-grade systems, applying disciplined experimentation to validate scalability, cost, and business impact before deployment.',
+    'Act as the technical bridge across Engineering, Product, and customer-facing teams, ensuring new capabilities deliver real-world value and are maintainable in production.',
   ],
   current: true,
 }

@@ -51,8 +51,12 @@ and static content modules.
 - `src/components/` - Presentation components and page sections
 - `src/data/` - Role and project content models
 - `src/lib/` - Site constants, font setup, and shared utilities
-- `tests/unit/` - Vitest tests
-- `tests/e2e/` - Playwright smoke tests
+
+### Testing Structure
+
+- `tests/unit/` - Vitest unit tests (jsdom environment, uses `@testing-library/react`)
+- `tests/e2e/` - Playwright smoke tests (runs against the production server on `localhost:3000`)
+- `tests/setup.ts` - Vitest setup importing jest-dom matchers
 
 ### Styling
 
@@ -72,14 +76,22 @@ provider.
 
 ## Code Conventions
 
-- Use type imports where required by ESLint.
-- Prefix intentionally unused variables with `_`.
+- Use `type` imports: `import { type Foo } from 'bar'` (enforced by ESLint).
+- Prefix intentionally unused variables with `_`: `_unusedVar`.
 - Add `'use client'` only for components that need client-side behavior.
 - Keep content changes in `src/data` when possible.
 - Avoid dead scaffold files; if a type or helper has no consumer, remove it.
-- Commits follow Conventional Commits and are checked by commitlint.
+- Commits follow [Conventional Commits](https://www.conventionalcommits.org/) and are checked by commitlint.
 
-## Hooks
+### File Length
+
+- **Components**: ~150 lines max. Extract subcomponents or hooks when exceeding this.
+- **Utilities/hooks**: ~100 lines max. Split into focused modules.
+- **Test files**: No strict limit, but group related tests and consider splitting by feature.
+
+These are guidelines, not rules. A 200-line component with clear structure is better than three tangled 60-line files.
+
+## Pre-commit Hooks
 
 Husky runs lint-staged on commit:
 

@@ -36,17 +36,21 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Scripts
 
-| Command             | Description                                      |
-| ------------------- | ------------------------------------------------ |
-| `pnpm dev`          | Start the development server with Turbopack      |
-| `pnpm build`        | Build the production app                         |
-| `pnpm start`        | Start the production server                      |
-| `pnpm lint`         | Run ESLint with zero warnings allowed            |
-| `pnpm format`       | Format files with Prettier                       |
-| `pnpm format:check` | Check Prettier formatting                        |
-| `pnpm typecheck`    | Run TypeScript without emitting output           |
-| `pnpm test`         | Run Vitest unit tests                            |
-| `pnpm test:e2e`     | Run Playwright tests against a production server |
+| Command              | Description                                      |
+| -------------------- | ------------------------------------------------ |
+| `pnpm dev`           | Start the development server with Turbopack      |
+| `pnpm build`         | Build the production app                         |
+| `pnpm start`         | Start the production server                      |
+| `pnpm lint`          | Run ESLint with zero warnings allowed            |
+| `pnpm lint:fix`      | Run ESLint with auto-fix                         |
+| `pnpm format`        | Format files with Prettier                       |
+| `pnpm format:check`  | Check Prettier formatting                        |
+| `pnpm typecheck`     | Run TypeScript without emitting output           |
+| `pnpm test`          | Run Vitest unit tests                            |
+| `pnpm test:ui`       | Run Vitest with the interactive UI               |
+| `pnpm test:coverage` | Run Vitest with coverage reporting               |
+| `pnpm test:e2e`      | Run Playwright tests against a production server |
+| `pnpm test:e2e:ui`   | Run Playwright with the interactive UI           |
 
 ## Project Structure
 
@@ -59,7 +63,8 @@ src/
 
 tests/
 ├── unit/            # Vitest coverage for utilities and metadata routes
-└── e2e/             # Playwright smoke tests across desktop and mobile browsers
+├── e2e/             # Playwright smoke tests across desktop and mobile browsers
+└── setup.ts         # Vitest setup importing jest-dom matchers
 ```
 
 ## Code Quality

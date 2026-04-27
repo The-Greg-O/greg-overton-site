@@ -1,3 +1,9 @@
+const lastUpdated = '2026-04-26'
+const lastUpdatedDate = new Date(lastUpdated)
+if (Number.isNaN(lastUpdatedDate.getTime())) {
+  throw new Error(`siteConfig.lastUpdated is not a valid ISO date: ${lastUpdated}`)
+}
+
 export const siteConfig = {
   name: 'Greg Overton',
   tagline:
@@ -5,8 +11,12 @@ export const siteConfig = {
   description:
     'Personal site of Greg Overton — engineering leader building real systems and integrations across IoT, sailing, rocketry, and agentic AI.',
   url: process.env['NEXT_PUBLIC_SITE_URL'] ?? 'https://gregoverton.com',
-  lastUpdated: '2026-04-26',
-  lastUpdatedLabel: 'Apr 2026',
+  lastUpdated,
+  lastUpdatedLabel: new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(lastUpdatedDate),
   author: {
     name: 'Greg Overton',
     location: 'Seattle, WA',
