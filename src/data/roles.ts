@@ -15,11 +15,15 @@ export const currentRole: Role = {
   companyUrl: 'https://butlr.com',
   period: 'Jan 2026 — present',
   summary:
-    'I own the research engineering function at Butlr — edge algorithms and firmware, cloud pipelines, ML, dashboards, developer tooling. Most of my time is spent at the seams between layers.',
+    'I lead Butlr’s research engineering function, owning the path from concept through production for new technical capabilities across edge systems, data infrastructure, ML, and AI-native operations.',
   highlights: [
-    'Technical direction across the full stack — firmware and edge, ingest and ML, dashboards and dev tooling. Setting the bar for how we ship: conventions, reliability patterns, CI.',
-    'AI-native infrastructure — agentic tools, our public open-source MCP server, and persistent agents that diagnose the production fleet over Slack.',
-    'Platform reliability — architected the edge-to-cloud ingest rearchitecture (MQTT-centric, durable buffering, per-tenant routing) and led the Rust port of our core detection algorithms.',
+    'Pioneer the adoption of emerging technologies (AI, infrastructure, developer tooling), rapidly prototyping and evaluating new approaches for technical and commercial viability.',
+    'Design and unify cross-domain systems, integrating firmware, ingest, ML, and user-facing platforms into cohesive, scalable architectures.',
+    'Architect core platform infrastructure, including the edge-to-cloud ingest rearchitecture (MQTT-based, durable buffering, per-tenant routing) to support reliability at fleet scale.',
+    'Build AI-native operational systems, including agentic tooling, persistent Slack-based diagnostic agents, and Butlr’s open-source MCP server.',
+    'Lead the development and productionization of sensing and detection systems, including the Rust-based reimplementation of core algorithms for performance and reliability.',
+    'Translate exploratory research into production-grade systems, applying disciplined experimentation to validate scalability, cost, and business impact before deployment.',
+    'Act as the technical bridge across Engineering, Product, and customer-facing teams, ensuring new capabilities deliver real-world value and are maintainable in production.',
   ],
   current: true,
 }
