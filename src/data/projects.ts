@@ -74,9 +74,16 @@ export const projectThemes: ProjectTheme[] = [
     blurb: 'Agents, integrations, and workflows that do real work on real systems.',
     items: [
       {
+        name: 'TokenBurner',
+        description:
+          'Native macOS menu-bar app that tracks Claude Code usage limits across accounts and switches the active one in a click.',
+        url: 'https://github.com/The-Greg-O/tokenburner',
+      },
+      {
         name: 'butlr-mcp',
         description:
           'Open-source Model Context Protocol server for Butlr\u2014published to npm under OIDC trusted publishing, so integrators can plug Butlr into their own agents.',
+        url: 'https://github.com/butlrtechnologies/butlr-mcp',
       },
       {
         name: 'Claude-native development workflows',
