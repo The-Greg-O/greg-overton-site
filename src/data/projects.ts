@@ -83,6 +83,7 @@ export const projectThemes: ProjectTheme[] = [
         name: 'butlr-mcp',
         description:
           'Open-source Model Context Protocol server for Butlr\u2014published to npm under OIDC trusted publishing, so integrators can plug Butlr into their own agents.',
+        url: 'https://github.com/butlrtechnologies/butlr-mcp',
       },
       {
         name: 'Claude-native development workflows',
