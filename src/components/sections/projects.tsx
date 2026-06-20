@@ -44,7 +44,7 @@ const PLATES: Plate[] = [
 
 export function Projects() {
   return (
-    <>
+    <section aria-labelledby="work-heading">
       <SectionLabel id="work" index="03" name="Work" stamp="A handful of threads" />
       <p className="mb-2 max-w-[680px] text-[15px] leading-[1.6] text-fg-dim">
         Mentioned, not case-studied. A link goes out where the work is public; otherwise it sits
@@ -117,7 +117,7 @@ export function Projects() {
           </div>
         ))}
       </div>
-    </>
+    </section>
   )
 }
 

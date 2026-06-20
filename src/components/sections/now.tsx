@@ -3,7 +3,7 @@ import { SectionLabel } from '@/components/section-label'
 
 export function Now() {
   return (
-    <>
+    <section aria-labelledby="now-heading">
       <SectionLabel id="now" index="01" name="Now" stamp="Current assignment" />
       <article className="surface-glass relative rounded-2xl px-8 py-8">
         <span aria-hidden className="corner corner-tl" />
@@ -11,9 +11,9 @@ export function Now() {
 
         <header className="mb-5 flex flex-wrap items-baseline justify-between gap-5">
           <div>
-            <h2 className="m-0 mb-1 font-sans text-[28px] font-light leading-[1.1] tracking-[-0.02em] text-[#eef4f8]">
+            <h3 className="m-0 mb-1 font-sans text-[28px] font-light leading-[1.1] tracking-[-0.02em] text-[#eef4f8]">
               {currentRole.title}
-            </h2>
+            </h3>
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-dim">
               {currentRole.companyUrl ? (
                 <a
@@ -60,6 +60,6 @@ export function Now() {
           </ol>
         )}
       </article>
-    </>
+    </section>
   )
 }
