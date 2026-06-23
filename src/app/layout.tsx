@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import { geistSans, jetbrainsMono } from '@/lib/fonts'
 import { siteConfig } from '@/lib/constants'
 import './globals.css'
@@ -47,6 +48,7 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${jetbrainsMono.variable} font-sans`}>
         {children}
+        <Analytics />
       </body>
     </html>
   )
