@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import { geistSans, jetbrainsMono } from '@/lib/fonts'
 import { siteConfig } from '@/lib/constants'
 import { currentRole } from '@/data/roles'
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${jetbrainsMono.variable} font-sans`}>
         <JsonLd />
         {children}
+        <Analytics />
       </body>
     </html>
   )
