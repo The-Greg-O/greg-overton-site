@@ -3,10 +3,14 @@ import { SectionLabel } from '@/components/section-label'
 
 export function Career() {
   return (
-    <>
+    <section aria-labelledby="path-heading">
       <SectionLabel id="path" index="02" name="Path" stamp="Aerospace · Security · IoT" />
       <p className="mb-7 max-w-[680px] text-[15px] leading-[1.6] text-fg-dim">
-        The thread across every role has been{' '}
+        Across roles at{' '}
+        <strong className="font-medium text-foreground">
+          Butlr Technologies, Palo Alto Networks, Rapid7, and the United States Air Force
+        </strong>
+        , the thread has been{' '}
         <strong className="font-medium text-foreground">
           cross-functional technical leadership
         </strong>{' '}
@@ -81,6 +85,6 @@ export function Career() {
           </div>
         </div>
       </div>
-    </>
+    </section>
   )
 }
