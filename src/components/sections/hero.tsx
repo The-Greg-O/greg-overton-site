@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { siteConfig } from '@/lib/constants'
+import { currentRole } from '@/data/roles'
 
 export function Hero() {
   return (
@@ -15,7 +16,7 @@ export function Hero() {
         </h1>
         <div className="flex flex-wrap items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.2em] text-fg-dim">
           <span className="text-teal">›</span>
-          <span>Head of Research Engineering</span>
+          <span>{currentRole.title}</span>
           <span className="text-fg-ghost">·</span>
           <a
             href={siteConfig.author.employerUrl}
@@ -26,6 +27,12 @@ export function Hero() {
             {siteConfig.author.employerName}
           </a>
         </div>
+
+        <p className="max-w-[640px] text-[15px] leading-[1.55] text-fg-dim">
+          {siteConfig.author.name} is the {currentRole.title} at {siteConfig.author.employerName},
+          an anonymous thermal-sensing company for the built environment, based in{' '}
+          {siteConfig.author.location}.
+        </p>
 
         <blockquote className="surface-glass relative mt-2 max-w-[640px] rounded-[14px] px-6 py-5 font-sans text-[18px] leading-[1.5] text-[#e8eef3]">
           <span aria-hidden className="corner corner-tl" />

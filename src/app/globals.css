@@ -415,6 +415,10 @@
     inset: 0;
     z-index: 0;
     background-image: url('/images/plate-stars.jpeg');
+    background-image: image-set(
+      url('/images/plate-stars.avif') type('image/avif'),
+      url('/images/plate-stars.jpeg') type('image/jpeg')
+    );
     background-size: cover;
     background-position: center;
     opacity: 0.22;
