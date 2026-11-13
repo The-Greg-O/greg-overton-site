@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { siteConfig } from '@/lib/constants'
 import { currentRole } from '@/data/roles'
 
+// Profile section: portrait, name heading, role and employer, bio, tagline and LinkedIn/GitHub chips.
 export function Hero() {
   return (
     <section
