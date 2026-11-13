@@ -46,7 +46,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `pnpm format`        | Format files with Prettier                       |
 | `pnpm format:check`  | Check Prettier formatting                        |
 | `pnpm typecheck`     | Run TypeScript without emitting output           |
-| `pnpm test`          | Run Vitest unit tests in watch mode              |
+| `pnpm test`          | Run Vitest unit tests                            |
 | `pnpm test:ui`       | Run Vitest with the interactive UI               |
 | `pnpm test:coverage` | Run Vitest with coverage reporting               |
 | `pnpm test:e2e`      | Run Playwright tests against a production server |
