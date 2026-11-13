@@ -57,14 +57,6 @@ export function Hero() {
           >
             <span className="arr">→</span> GitHub
           </a>
-          <a
-            className="chip"
-            href={siteConfig.author.employerUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="arr">→</span> Butlr
-          </a>
         </div>
       </div>
     </section>
