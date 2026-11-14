@@ -1,5 +1,6 @@
 import { siteConfig } from '@/lib/constants'
 
+// Site footer: source, LinkedIn and GitHub links with the copyright year.
 export function Footer() {
   const year = new Date().getFullYear()
   return (
