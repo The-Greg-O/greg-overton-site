@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { siteConfig } from '@/lib/constants'
 import { currentRole } from '@/data/roles'
 
+// literal check: @here *bold* https://example.com `tick`
 export function Hero() {
   return (
     <section
