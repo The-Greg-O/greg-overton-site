@@ -1,5 +1,6 @@
 import { siteConfig } from '@/lib/constants'
 
+// Renders the top status bar: profile log label, online status, coordinates and location.
 export function Topbar() {
   return (
     <div className="surface-glass mb-14 flex flex-wrap items-center justify-between gap-3 rounded-[10px] px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-fg-mute">
