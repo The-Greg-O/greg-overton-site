@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { siteConfig } from '@/lib/constants'
 import { currentRole } from '@/data/roles'
 
+// Renders the profile hero: portrait, name, current role and employer link, intro text and tagline.
 export function Hero() {
   return (
     <section
