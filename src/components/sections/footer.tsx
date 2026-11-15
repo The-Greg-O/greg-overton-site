@@ -1,5 +1,6 @@
 import { siteConfig } from '@/lib/constants'
 
+// Renders the author name, copyright year and last-updated label, plus Source, LinkedIn and GitHub links.
 export function Footer() {
   const year = new Date().getFullYear()
   return (
