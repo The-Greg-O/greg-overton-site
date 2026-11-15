@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { siteConfig } from '@/lib/constants'
 import { currentRole } from '@/data/roles'
 
+// Renders the profile hero section with the portrait and current role.
 export function Hero() {
   return (
     <section
