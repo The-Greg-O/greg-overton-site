@@ -1,6 +1,7 @@
 import { currentRole } from '@/data/roles'
 import { SectionLabel } from '@/components/section-label'
 
+// Renders the Now section: the current role and assignment.
 export function Now() {
   return (
     <section aria-labelledby="now-heading">
