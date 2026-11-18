@@ -50,7 +50,10 @@ test.describe('Keyboard', () => {
     await expect(skip).toBeFocused()
     await expect(skip).toBeVisible()
 
-    const count = await page.locator('#profile a').count()
+    const hrefs = await page
+      .locator('#profile a:visible')
+      .evaluateAll((els) => [...new Set(els.map((e) => e.getAttribute('href') ?? ''))])
+    const count = hrefs.length
     const seen = new Set<string>()
     for (let i = 0; i < 60 && seen.size < count; i++) {
       await page.keyboard.press('Tab')
@@ -61,7 +64,7 @@ test.describe('Keyboard', () => {
       })
       if (info) {
         expect(info.outline).not.toBe('none')
-        seen.add(info.href)
+        if (hrefs.includes(info.href)) seen.add(info.href)
       }
     }
     expect(seen.size).toBe(count)
