@@ -95,6 +95,10 @@ export const projectThemes: ProjectTheme[] = [
         description: 'Contributions to the upstream Home Assistant Model Context Protocol server.',
         url: 'https://github.com/homeassistant-ai/ha-mcp',
       },
+      {
+        name: 'Foundry',
+        description: 'An exploration in a personal software factory.',
+      },
     ],
   },
   {
