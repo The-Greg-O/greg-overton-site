@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { render, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { Hero } from '@/components/sections/hero'
@@ -36,5 +38,26 @@ describe('Hero', () => {
       'href',
       siteConfig.author.employerUrl
     )
+  })
+
+  it('gives every link a focus-visible outline and never removes it', () => {
+    const section = renderProfile()
+    const employer = within(section).getByRole('link', { name: 'Butlr Technologies' })
+    expect(employer.className).toContain('focus-visible:outline-2')
+    expect(employer.className).not.toContain('focus-visible:outline-none')
+
+    const links = Array.from(section.querySelectorAll<HTMLAnchorElement>('a'))
+    expect(links.length).toBeGreaterThanOrEqual(3)
+    for (const link of links) {
+      const hasFocusStyle =
+        link.classList.contains('chip') || link.className.includes('focus-visible:outline-2')
+      expect(hasFocusStyle).toBe(true)
+      expect(link.className).not.toContain('outline-none')
+    }
+  })
+
+  it('keeps the chip focus ring in globals.css', () => {
+    const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8')
+    expect(css).toMatch(/\.chip:focus-visible\s*{[^}]*outline:\s*2px solid/)
   })
 })

@@ -38,6 +38,27 @@ test.describe('Homepage', () => {
   })
 })
 
+test.describe('Keyboard', () => {
+  test('skip link is first Tab stop, then hero links show an outline', async ({ page }) => {
+    await page.goto('/')
+    await page.keyboard.press('Tab')
+    const skip = page.getByRole('link', { name: 'Skip to content' })
+    await expect(skip).toBeFocused()
+    await expect(skip).toBeVisible()
+
+    const links = page.locator('#profile a')
+    const count = await links.count()
+    for (let i = 0; i < count; i++) {
+      await links.nth(i).focus()
+      await page.keyboard.press('Shift+Tab')
+      await page.keyboard.press('Tab')
+      await expect(links.nth(i)).toBeFocused()
+      const style = await links.nth(i).evaluate((el) => getComputedStyle(el).outlineStyle)
+      expect(style).not.toBe('none')
+    }
+  })
+})
+
 test.describe('404 Page', () => {
   test('shows 404 for non-existent routes', async ({ page }) => {
     await page.goto('/non-existent-page')
