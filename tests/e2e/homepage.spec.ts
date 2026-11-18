@@ -39,23 +39,32 @@ test.describe('Homepage', () => {
 })
 
 test.describe('Keyboard', () => {
-  test('skip link is first Tab stop, then hero links show an outline', async ({ page }) => {
+  test('skip link is first Tab stop, then hero links show an outline', async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(browserName === 'webkit', 'WebKit does not Tab to links by default')
     await page.goto('/')
     await page.keyboard.press('Tab')
     const skip = page.getByRole('link', { name: 'Skip to content' })
     await expect(skip).toBeFocused()
     await expect(skip).toBeVisible()
 
-    const links = page.locator('#profile a')
-    const count = await links.count()
-    for (let i = 0; i < count; i++) {
-      await links.nth(i).focus()
-      await page.keyboard.press('Shift+Tab')
+    const count = await page.locator('#profile a').count()
+    const seen = new Set<string>()
+    for (let i = 0; i < 60 && seen.size < count; i++) {
       await page.keyboard.press('Tab')
-      await expect(links.nth(i)).toBeFocused()
-      const style = await links.nth(i).evaluate((el) => getComputedStyle(el).outlineStyle)
-      expect(style).not.toBe('none')
+      const info = await page.evaluate(() => {
+        const el = document.activeElement as HTMLElement | null
+        if (!el?.closest('#profile') || el.tagName !== 'A') return null
+        return { href: el.getAttribute('href') ?? '', outline: getComputedStyle(el).outlineStyle }
+      })
+      if (info) {
+        expect(info.outline).not.toBe('none')
+        seen.add(info.href)
+      }
     }
+    expect(seen.size).toBe(count)
   })
 })
 
