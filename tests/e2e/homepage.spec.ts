@@ -36,6 +36,26 @@ test.describe('Homepage', () => {
     await expect(page.getByRole('link', { name: 'LinkedIn' }).first()).toBeVisible()
     await expect(page.getByRole('link', { name: 'GitHub' }).first()).toBeVisible()
   })
+
+  test('keyboard focus: skip link first, visible outlines on hero links', async ({ page }) => {
+    await page.keyboard.press('Tab')
+    await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused()
+
+    const targets = [
+      page.locator('#profile').getByRole('link', { name: 'Butlr Technologies' }),
+      page.locator('#profile a.chip').nth(0),
+      page.locator('#profile a.chip').nth(1),
+    ]
+    for (const target of targets) {
+      for (let i = 0; i < 30; i++) {
+        if (await target.evaluate((el) => el === document.activeElement)) break
+        await page.keyboard.press('Tab')
+      }
+      await expect(target).toBeFocused()
+      const width = await target.evaluate((el) => parseFloat(getComputedStyle(el).outlineWidth))
+      expect(width).toBeGreaterThan(0)
+    }
+  })
 })
 
 test.describe('404 Page', () => {

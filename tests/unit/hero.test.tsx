@@ -37,4 +37,31 @@ describe('Hero', () => {
       siteConfig.author.employerUrl
     )
   })
+
+  it('gives the employer link a visible keyboard focus outline', () => {
+    const section = renderProfile()
+    const link = within(section).getByRole('link', { name: 'Butlr Technologies' })
+    const classes = link.className.split(/\s+/)
+
+    expect(classes).toContain('focus-visible:outline')
+    expect(classes).toContain('focus-visible:outline-2')
+    expect(classes).not.toContain('focus-visible:outline-none')
+    for (const c of classes.filter((c) => c.includes('outline'))) {
+      expect(c.startsWith('focus-visible:')).toBe(true)
+    }
+    expect(classes).toEqual(
+      expect.arrayContaining(['border-b', 'hover:border-teal', 'hover:text-teal-soft'])
+    )
+  })
+
+  it('keeps both chips as focusable links with hrefs', () => {
+    const section = renderProfile()
+    const chips = Array.from(section.querySelectorAll<HTMLAnchorElement>('a.chip'))
+
+    expect(chips).toHaveLength(2)
+    for (const chip of chips) {
+      expect(chip).toHaveAttribute('href')
+      expect(chip.tabIndex).toBeGreaterThanOrEqual(0)
+    }
+  })
 })

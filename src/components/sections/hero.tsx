@@ -22,7 +22,7 @@ export function Hero() {
             href={siteConfig.author.employerUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-b border-[rgba(95,211,214,0.28)] pb-0.5 text-foreground no-underline transition-colors hover:border-teal hover:text-teal-soft focus-visible:border-teal focus-visible:outline-none"
+            className="border-b border-[rgba(95,211,214,0.28)] pb-0.5 text-foreground no-underline transition-colors hover:border-teal hover:text-teal-soft focus-visible:border-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
           >
             {siteConfig.author.employerName}
           </a>
